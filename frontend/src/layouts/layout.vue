@@ -2,18 +2,26 @@
   <div>
     <el-container style="min-height: 100vh">
       <!-- 顶栏 -->
-      <el-header style="display: flex; border-bottom: 1px solid #ddd; background-color: #fff">
+      <el-header style="display: flex; border-bottom: 1px solid #ddd; background-color: #fff; align-items: center;">
         <div
           style="flex: 1; display: flex; align-items: center; font-size: 24px; font-weight: bold"
         >
           <img style="width: 40px" src="@/assets/images/logo.png" alt="" />
           <div style="margin-left: 5px">智能实验室管理系统</div>
         </div>
-        <div style="display: flex; align-items: center">
-          <img src="@/assets/images/logo.png" style="width: 30px; border-radius: 50%" />
-          <div style="margin-left: 3px">管理员</div>
-          <!-- 这个是文字和前面打的图像的间隔 -->
-        </div>
+          <div>
+            <el-dropdown>
+              <div style="display: flex; align-items: center; cursor: pointer">
+                <img src="@/assets/images/logo.png" alt="" style="width: 30px; border-radius: 50%" />
+                <div style="margin-left: 3px">管理员</div>
+              </div>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </div>
       </el-header>
 
       <el-container>
@@ -41,7 +49,6 @@
             </el-menu-item>
           </el-menu>
         </el-aside>
-
         <el-main>
           <router-view />
         </el-main>
@@ -51,7 +58,12 @@
 </template>
 
 <script setup>
+import router from '@/router'
 import { User, House, Menu, Setting } from '@element-plus/icons-vue'
+
+const logout = () => {
+  router.push('/login')
+}
 </script>
 
-// 这个才是框架
+<!-- // 这个才是框架 -->
