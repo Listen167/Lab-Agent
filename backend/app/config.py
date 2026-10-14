@@ -7,6 +7,9 @@ ENV_FILE = BASE_DIR / ".ENV"
 
 class Settings(BaseSettings):
     DATABASE_URL: str 
+    JWT_SECRET_KEY: str
+    JWT_EXPIRE_HOURS: int = 24
+    JWT_ALGORITHM:str = "HS256"
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE, 
